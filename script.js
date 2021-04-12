@@ -110,26 +110,26 @@ scene.add(abint)
 
 const mloader = new THREE.GLTFLoader();
 mloader.load('nasa_curiosity_clean/scene.gltf', function (gltf) {
-   
+
     const rover = gltf.scene;
-
-
-  //  The Models Animation
+    rover.rotation.y = 187
+    //  gui.add(rover.rotation,'y').min(0).max(600)
+    //  The Models Animation
     const animations = gltf.animations;
-   
+
     const mixer = new THREE.AnimationMixer(rover);
 
     animations.forEach(animation => {
 
         console.log(animation)
-   
+
         mixer.clipAction(animation).play();
-       
+
 
     });
 
     scene.add(gltf.scene)
- 
+
     const clock = new THREE.Clock()
 
 
@@ -141,9 +141,9 @@ mloader.load('nasa_curiosity_clean/scene.gltf', function (gltf) {
 
         plane.material.displacementScale = .3 + mouseY * 0.0008
 
-       // rover.rotation.y =  mouseY * 0.005
-       
-        
+        // rover.rotation.y =  mouseY * 0.005
+
+
         // Render
         renderer.render(scene, camera)
 
